@@ -1,12 +1,18 @@
 <template lang="pug">
     section.container
-        h1 Posts Page
+      ThePostList
 </template>
 
 <script>
+// Components
+import ThePostList from "../../components/ThePostList"
+
 export default {
   head: {
     title: 'Posts'
+  },
+  components: {
+    ThePostList
   }
 }
 </script>
@@ -17,13 +23,10 @@ export default {
 
 .container {
   width: 100%;
-  min-height: 100%;
 
-  @include Flexer(flex, column, space-between, stretch);
+  padding: 10px;
 
-  h1 {
-    text-align: center;
-  }
+  @include Flexer (flex, column, flex-start, center);
 }
 
 </style>
