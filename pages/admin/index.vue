@@ -12,6 +12,7 @@
 import ThePostList from "../../components/ThePostList"
 
 export default {
+  layout: 'admin',
   head: {
     title: 'Admin Page'
   },
@@ -30,6 +31,8 @@ export default {
 
   @include Flexer(flex, column, center, center);
 
+  padding-top: 20px;
+
   .new-post {
     button {
       padding: 10px;
@@ -42,6 +45,8 @@ export default {
       border-radius: 8px;
 
       background: #ADA996;
+
+      cursor: pointer;
 
       &:hover {
         color: antiquewhite;

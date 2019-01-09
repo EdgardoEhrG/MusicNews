@@ -2,7 +2,7 @@
     section.post-list
       BasePostPreview(
           v-for="post in prPosts"
-          key="post.id"
+          :key="post.id"
           :imageName="post.imageName"
           :title="post.title"
           :previewText="post.previewText"

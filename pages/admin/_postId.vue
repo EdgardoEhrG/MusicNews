@@ -9,6 +9,7 @@
 import TheNewPostForm from "../../components/TheNewPostForm"
 
 export default {
+  layout: 'admin',
   components: {
     TheNewPostForm
   },
@@ -26,4 +27,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.admin-post-page {
+  padding-top: 20px;
+}
+
 </style>
