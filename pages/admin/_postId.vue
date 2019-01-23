@@ -1,10 +1,13 @@
 <template lang="pug">
     div.admin-post-page
       section.update-form
-        TheNewPostForm(:post="this.loadedPost")
+        TheNewPostForm(:post="this.loadedPost" @submit="onSubmitted")
 </template>
 
 <script>
+// Libraries
+import axios from 'axios'
+
 // Components
 import TheNewPostForm from "../../components/TheNewPostForm"
 
@@ -13,14 +16,19 @@ export default {
   components: {
     TheNewPostForm
   },
-  data () {
-    return {
-      loadedPost: {
-        author: 'Smb',
-        title: 'Text',
-        imageName: 'Smt',
-        content: 'Text2'
-      }
+  asyncData (context) {
+    return axios.get('https://music-news-cdc05.firebaseio.com/posts/' + context.params.postId + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(err => context.error(err))
+  },
+  methods: {
+    onSubmitted (editedPost) {
+      this.$store.dispatch('EDIT_POST', { ...editedPost, id: this.$route.params.postId })
+      this.$router.push('/admin');
     }
   }
 }

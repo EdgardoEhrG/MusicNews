@@ -3,16 +3,27 @@
       header.header
         h1 Post Page
       main.main
-        h2 Title of the post
-        h3 Last updated on ? <br> Written by ?
-        p Text ...
-        p.links Links ...
+        h2 {{ loadedPost.title }}
+        h3 Last updated on {{ loadedPost.updatedDate }} <br> Written by {{ loadedPost.author }}
+        p Text {{ loadedPost.content }}
       footer.footer
         p 2018 ...
 </template>
 
 <script>
+// Libraries
+import axios from 'axios'
+
 export default {
+  asyncData (context) {
+    return axios.get('https://music-news-cdc05.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
+      })
+      .catch(err => context.error(err))
+  }
 }
 </script>
 

@@ -2,10 +2,11 @@
     form.form(@submit.prevent="onSave")
       label Author Name #[input(type="text" v-model="editedPost.author" placeholder="Enter your name")]
       label Title #[input(type="text" v-model="editedPost.title" placeholder="Enter title of post")]
-      label Image File #[input(type="text" v-model="editedPost.imageName" placeholder="Enter image name and format")]
+      label Preview Text #[input(type="text" v-model="editedPost.previewText" placeholder="Enter preview text of post")]
+      label Image File #[input(type="text" v-model="editedPost.imageName" placeholder="Enter image url")]
       label Content #[textarea(v-model="editedPost.content" rows="10" maxlenght="1000" placeholder="Enter smt")]
       div.buttons
-        button.save(@click="onSave") Save
+        button.save(type="submit") Save
         button.cancel(@click="onCancel") Cancel
 </template>
 
@@ -13,20 +14,20 @@
 export default {
   name: 'TheNewPostForm',
   props: {
-    post: {type: Object, required: false, default: function () { return { author: '', title: '', imageName: '', content: '' } }}
+    post: {type: Object, required: false, default: function () { return { author: '', title: '', imageName: '', content: '', previewText: '' } }}
   },
   data () {
     return {
-      editedPost: this.post
+      editedPost: { ...this.post }
     }
   },
   methods: {
     onSave () {
-      // Save the post
-      console.log(this.editedPost)
+      this.$emit('submit', this.editedPost)
+      this.$router.push('/admin')
+      // console.log(this.editedPost)
     },
     onCancel () {
-      // Return back
       this.$router.push('/admin')
     }
   }

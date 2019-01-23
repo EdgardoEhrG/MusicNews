@@ -18,6 +18,9 @@ export default {
   },
   components: {
     ThePostList
+  },
+  created () {
+    this.$store.dispatch('NUXT_SERVER_INIT')
   }
 }
 </script>

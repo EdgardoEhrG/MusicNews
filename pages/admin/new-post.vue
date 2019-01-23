@@ -1,10 +1,13 @@
 <template lang="pug">
     main.admin-post-page
       section.new-post-form
-        TheNewPostForm
+        TheNewPostForm(@submit="onSubmitted")
 </template>
 
 <script>
+// Libraries
+import axios from 'axios'
+
 // Components
 import TheNewPostForm from "../../components/TheNewPostForm"
 
@@ -15,6 +18,12 @@ export default {
   },
   components: {
     TheNewPostForm
+  },
+  methods: {
+    onSubmitted (postData) {
+      this.$store.dispatch('ADD_POST', postData)
+      this.$route.push('/admin')
+    }
   }
 }
 </script>

@@ -4,7 +4,6 @@
         TheNavigationBurger
         h1 Get the latest music news
         nav.links
-          //nuxt-link(to="/" tag="a") Home
           nuxt-link(to="/admin" tag="a") Admin
           nuxt-link(to="/posts" tag="a") Posts
           nuxt-link(to="/about" tag="a") About

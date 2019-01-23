@@ -2,7 +2,7 @@
     nuxt-link(:to="postLink" tag="a")
         article.post-preview
             div.post-thumbnail
-              img(:src="require('../static/images/' + imageName)" alt="singer")
+              img(:src="imageName" alt="musician")
             div.post-content
               h1 {{ title }}
               p {{ previewText }}
@@ -15,7 +15,8 @@ export default {
         imageName: {type: String, required: true},
         title: {type: String, required: true},
         previewText: {type: String, required: true},
-        isAdmin: {type: Boolean, required: true}
+        isAdmin: {type: Boolean, required: true},
+        id: {type: String, required: true}
     },
     computed: {
       postLink () {
@@ -29,7 +30,7 @@ export default {
 
 a {
     margin: 20px;
-    
+
     color: black;
 
     .post-preview {

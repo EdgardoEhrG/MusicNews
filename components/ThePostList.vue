@@ -3,6 +3,7 @@
       BasePostPreview(
           v-for="post in prPosts"
           :key="post.id"
+          :id="post.id"
           :imageName="post.imageName"
           :title="post.title"
           :previewText="post.previewText"
