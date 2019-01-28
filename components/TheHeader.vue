@@ -12,13 +12,11 @@
 
 <script>
 // Components
-import TheNavigationBurger from "./TheNavigationBurger"
 import TheMobileMenu from "./TheMobileMenu"
 
 export default {
   name: 'TheHeader',
   components: {
-    TheNavigationBurger,
     TheMobileMenu
   }
 }
@@ -44,6 +42,8 @@ export default {
       @include Flexer(flex, row, space-between, center);
 
       h1 {
+        font-family: 'Work Sans', sans-serif;
+
         text-align: center;
       }
 
@@ -68,6 +68,8 @@ export default {
     }
 
     .links {
+      font-family: 'Work Sans', sans-serif;
+
       @media screen and (max-width: 1300px) {
         display: none;
       }

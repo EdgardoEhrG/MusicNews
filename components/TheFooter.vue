@@ -18,6 +18,8 @@ export default {
     background: linear-gradient(to right, #414345, #232526);
 
     p {
+        font-family: 'Work Sans', sans-serif;
+
         color: white;
         text-align: center;
     }

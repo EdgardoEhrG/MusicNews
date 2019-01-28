@@ -6,15 +6,7 @@
 </template>
 
 <script>
-// Components
-import TheHeader from "../components/TheHeader"
-import TheFooter from "../components/TheFooter"
-
 export default {
-  components: {
-    TheHeader,
-    TheFooter
-  }
 }
 </script>
 
@@ -22,17 +14,6 @@ export default {
 <style lang="scss">
 
 @import "../assets/styles/_mixins.scss";
-
-* {
-  margin: 0;
-  padding: 0;
-
-  box-sizing: border-box;
-
-  font-family: 'Work Sans', sans-serif;
-
-  text-decoration: none;
-}
 
 html, body, #__nuxt, #__layout {
   width: 100%;

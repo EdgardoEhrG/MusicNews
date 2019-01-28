@@ -63,6 +63,8 @@ export default {
     h1 {
       margin-top: 10px;
 
+      font-family: 'Work Sans', sans-serif;
+
       text-align: center;
     }
   }

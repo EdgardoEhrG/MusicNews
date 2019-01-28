@@ -16,12 +16,15 @@ const store = () => new Vuex.Store({
     toShow (state, payload) {
       state.isShow = payload
     },
+    // ========================
     setPosts(state, payload) {
       state.prevPosts = payload
     },
+    // ========================
     addPost (state, payload) {
       state.prevPosts.push(payload)
     },
+    // ========================
     editPost(state, payload) {
       const postIndex = state.prevPosts.findIndex(post => post.id === payload.id)
       state.prevPosts[postIndex] = payload
@@ -32,7 +35,7 @@ const store = () => new Vuex.Store({
     TOSHOW ({commit}, payload) {
       commit('toShow', payload)
     },
-    // To get all posts
+    // ======================== To get all posts
     NUXT_SERVER_INIT ({commit}) {
       return axios.get('https://music-news-cdc05.firebaseio.com/posts.json')
         .then(res => {
@@ -44,6 +47,7 @@ const store = () => new Vuex.Store({
         })
         .catch(err => context.error(err))
     },
+    // ========================
     ADD_POST ({commit}, payload) {
       const createdPost = {
         ...payload,
@@ -55,6 +59,7 @@ const store = () => new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
+    // ========================
     EDIT_POST ({commit}, payload) {
       return axios.put('https://music-news-cdc05.firebaseio.com/posts/' + payload.id + '.json', payload)
         .then(res => {
@@ -62,6 +67,7 @@ const store = () => new Vuex.Store({
         })
         .catch(err => console.error(err))
     },
+    // ========================
     SET_POSTS ({commit}, payload) {
       commit('setPost', payload)
     }
@@ -71,6 +77,7 @@ const store = () => new Vuex.Store({
     statusMenu (state) {
       return state.isShow
     },
+    // ========================
     prPosts (state) {
       return state.prevPosts
     }

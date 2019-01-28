@@ -43,8 +43,14 @@ a {
 
         .post-thumbnail {
             img {
-              width: 400px;
+              height: 100%;
+              max-width: 500px;
+              max-height: 330px;
             }
+        }
+
+        .post-content {
+            font-family: 'Work Sans', sans-serif;
         }
     }
 }
