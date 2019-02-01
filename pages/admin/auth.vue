@@ -21,9 +21,10 @@ export default {
   },
   methods: {
     onSubmit () {
-      this.$axios.$post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.fbAPIKey, { email: this.email, password: this.password, returnSecureToken: true })
-        .then(result => console.log(result))
-        .catch(err => console.log(err))
+      this.$store.dispatch('AUTHENTICATE_USER', { isLogin: this.isLogin, email: this.email, password: this.password })
+        .then(() => {
+          this.$router.push('/admin')
+        })
     }
   }
 }

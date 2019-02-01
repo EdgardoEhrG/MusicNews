@@ -16,6 +16,7 @@ export default {
   head: {
     title: 'Admin Page'
   },
+  middleware: 'auth',
   components: {
     ThePostList
   },

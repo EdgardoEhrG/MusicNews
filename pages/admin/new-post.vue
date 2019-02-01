@@ -16,6 +16,7 @@ export default {
   head: {
     title: 'New Post'
   },
+  middleware: ['auth'],
   components: {
     TheNewPostForm
   },

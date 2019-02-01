@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import axios from 'axios'
+import { setTimeout } from 'timers';
 
 Vue.use(Vuex)
 
@@ -9,7 +10,8 @@ const store = () => new Vuex.Store({
 
   state: {
     isShow: false,
-    prevPosts: []
+    prevPosts: [],
+    token: null
   },
 
   mutations: {
@@ -28,6 +30,14 @@ const store = () => new Vuex.Store({
     editPost(state, payload) {
       const postIndex = state.prevPosts.findIndex(post => post.id === payload.id)
       state.prevPosts[postIndex] = payload
+    },
+    // ========================
+    setToken (state, payload) {
+      state.token = payload
+    },
+    // ========================
+    clearToken (state) {
+      state.token = null
     }
   },
 
@@ -53,7 +63,7 @@ const store = () => new Vuex.Store({
         ...payload,
         updatedData: new Date()
       }
-      return axios.post('https://music-news-cdc05.firebaseio.com/posts.json', createdPost)
+      return axios.post('https://music-news-cdc05.firebaseio.com/posts.json?auth=' + this.state.token, createdPost)
         .then(res => {
           commit('addPost', { ...createdPost, id: res.data.name })
         })
@@ -61,7 +71,7 @@ const store = () => new Vuex.Store({
     },
     // ========================
     EDIT_POST ({commit}, payload) {
-      return axios.put('https://music-news-cdc05.firebaseio.com/posts/' + payload.id + '.json', payload)
+      return axios.put('https://music-news-cdc05.firebaseio.com/posts/' + payload.id + '.json?auth=' + this.state.token, payload)
         .then(res => {
           commit('editPost', payload)
         })
@@ -70,6 +80,26 @@ const store = () => new Vuex.Store({
     // ========================
     SET_POSTS ({commit}, payload) {
       commit('setPost', payload)
+    },
+    // ========================
+    AUTHENTICATE_USER ({commit}, payload) {
+      let authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + process.env.fbAPIKey;
+      if (!payload.isLogin) {
+        authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.fbAPIKey;
+      }
+      return axios.post(authUrl, { email: payload.email, password: payload.password, returnSecureToken: true })
+        .then(result => {
+          commit('setToken', result.data.idToken)
+          this.$router.push('/')
+          dispatch('SET_LOGOUT_TIMER', result.data.expiresIn * 1000)
+        })
+        .catch(err => console.log(err))
+    },
+    // ========================
+    SET_LOGOUT_TIMER ({commit}, duration) {
+      setTimeout(() => {
+        commit('clearToken')
+      }, duration)
     }
   },
 
@@ -80,6 +110,10 @@ const store = () => new Vuex.Store({
     // ========================
     prPosts (state) {
       return state.prevPosts
+    },
+    // ========================
+    isAuthenticated (state) {
+      return state.token != null
     }
   }
 

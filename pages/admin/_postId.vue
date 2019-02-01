@@ -16,6 +16,7 @@ export default {
   components: {
     TheNewPostForm
   },
+  middleware: 'auth',
   asyncData (context) {
     return axios.get(process.env.baseUrl + '/posts/' + context.params.postId + '.json')
       .then(res => {
