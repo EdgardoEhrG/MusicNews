@@ -16,14 +16,14 @@ export default {
   head: {
     title: 'New Post'
   },
-  middleware: ['auth'],
+  middleware: ['check-auth', 'auth'],
   components: {
     TheNewPostForm
   },
   methods: {
     onSubmitted (postData) {
       this.$store.dispatch('ADD_POST', postData)
-      this.$route.push('/admin')
+      this.$router.push('/admin')
     }
   }
 }

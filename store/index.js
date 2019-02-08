@@ -2,17 +2,21 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import axios from 'axios'
-import { setTimeout } from 'timers';
+import Cookie from 'js-cookie'
 
 Vue.use(Vuex)
 
 const store = () => new Vuex.Store({
+
+  // ---------------- STATE ---------------- //
 
   state: {
     isShow: false,
     prevPosts: [],
     token: null
   },
+
+  // ---------------- MUTATIONS ---------------- //
 
   mutations: {
     toShow (state, payload) {
@@ -41,7 +45,10 @@ const store = () => new Vuex.Store({
     }
   },
 
+  // ---------------- ACTIONS ---------------- //
+
   actions: {
+    // ======================== To show / hide mobile navigation menu
     TOSHOW ({commit}, payload) {
       commit('toShow', payload)
     },
@@ -84,24 +91,74 @@ const store = () => new Vuex.Store({
     // ========================
     AUTHENTICATE_USER ({commit}, payload) {
       let authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=' + process.env.fbAPIKey;
+
       if (!payload.isLogin) {
         authUrl = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=' + process.env.fbAPIKey;
       }
+
       return axios.post(authUrl, { email: payload.email, password: payload.password, returnSecureToken: true })
         .then(result => {
           commit('setToken', result.data.idToken)
+          localStorage.setItem('token', result.data.idToken)
+          localStorage.setItem('tokenExpiration', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
+          Cookie.set('jwt', result.data.idToken)
+          Cookie.set('expirationDate', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
+          // dispatch('SET_LOGOUT_TIMER', result.data.expiresIn * 1000)
           this.$router.push('/')
-          dispatch('SET_LOGOUT_TIMER', result.data.expiresIn * 1000)
         })
         .catch(err => console.log(err))
     },
     // ========================
-    SET_LOGOUT_TIMER ({commit}, duration) {
-      setTimeout(() => {
+    // SET_LOGOUT_TIMER ({commit}, duration) {
+    //   setTimeout(() => {
+    //     commit('clearToken')
+    //   }, duration)
+    // },
+    // ========================
+    INIT_AUTH ({commit}, req) {
+      let token, expirationDate;
+      if (req) {
+
+        if (!req.headers.cookie) {
+          return;
+        }
+
+        const jwtCookie = req.headers.cookie.split(';').find(c => c.trim().startsWith('jwt='))
+
+        if (!jwtCookie) {
+          return;
+        }
+
+        token = jwtCookie.split('=')[1]
+        expirationDate = req.headers.cookie.split(';').find(c => c.trim().startsWith('expirationDate=')).split('=')[1]
+      } else {
+        token = localStorage.getItem('token')
+        expirationDate = localStorage.getItem('tokenExpiration')
+      }
+
+      if (new Date().getTime() > +expirationDate || !token) {
+        console.log('No token or invalid token')
+        dispatch('LOGOUT')
         commit('clearToken')
-      }, duration)
+        return;
+      }
+
+      // dispatch('SET_LOGOUT_TIMER', +expirationDate - new Date().getTime())
+      commit('setToken', token)
+    },
+    // ========================
+    LOGOUT ({commit}) {
+      commit('clearToken')
+      Cookie.remove('jwt')
+      Cookie.remove('expirationDate')
+      if (process.client) {
+        localStorage.removeItem('token')
+        localStorage.removeItem('tokenExpiration')
+      }
     }
   },
+
+  // ---------------- GETTERS ---------------- //
 
   getters: {
     statusMenu (state) {

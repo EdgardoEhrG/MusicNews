@@ -2,6 +2,7 @@
     main.admin-page
       section.new-post
         button(@click="$router.push('/admin/new-post')") Create Post #[i(class="fa fa-plus-square" aria-hidden="true")]
+        button.logout(@click="onLogout") Log Out #[i(class="fa fa-sign-out" aria-hidden="true")]
       section.existing-posts
         h1 Existing Posts
         ThePostList(isAdmin)
@@ -16,12 +17,18 @@ export default {
   head: {
     title: 'Admin Page'
   },
-  middleware: 'auth',
+  middleware: ['check-auth', 'auth'],
   components: {
     ThePostList
   },
   created () {
     this.$store.dispatch('NUXT_SERVER_INIT')
+  },
+  methods: {
+    onLogout () {
+      this.$store.dispatch('LOGOUT')
+      this.$router.push('/')
+    }
   }
 }
 </script>
@@ -57,6 +64,10 @@ export default {
 
         transition: .4s;
       }
+    }
+
+    .logout {
+      margin-left: 20px;
     }
   }
 

@@ -16,7 +16,7 @@ export default {
   components: {
     TheNewPostForm
   },
-  middleware: 'auth',
+  middleware: ['check-auth', 'auth'],
   asyncData (context) {
     return axios.get(process.env.baseUrl + '/posts/' + context.params.postId + '.json')
       .then(res => {
