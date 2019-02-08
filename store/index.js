@@ -103,8 +103,11 @@ const store = () => new Vuex.Store({
           localStorage.setItem('tokenExpiration', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
           Cookie.set('jwt', result.data.idToken)
           Cookie.set('expirationDate', new Date().getTime() + Number.parseInt(result.data.expiresIn) * 1000)
+          return axios.post('http://localhost:3000/api/track-data', {data: 'Authenticated'})
+            .then(res => {
+              this.$router.push('/')
+            })
           // dispatch('SET_LOGOUT_TIMER', result.data.expiresIn * 1000)
-          this.$router.push('/')
         })
         .catch(err => console.log(err))
     },
@@ -131,9 +134,12 @@ const store = () => new Vuex.Store({
 
         token = jwtCookie.split('=')[1]
         expirationDate = req.headers.cookie.split(';').find(c => c.trim().startsWith('expirationDate=')).split('=')[1]
-      } else {
+      } else if (process.client) {
         token = localStorage.getItem('token')
         expirationDate = localStorage.getItem('tokenExpiration')
+      } else {
+        token = null;
+        expirationDate = null;
       }
 
       if (new Date().getTime() > +expirationDate || !token) {

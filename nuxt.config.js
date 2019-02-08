@@ -1,4 +1,6 @@
 const pkg = require('./package')
+const bodyParser = require('body-parser')
+// const axios = require('axios')
 
 module.exports = {
   mode: 'universal',
@@ -74,6 +76,40 @@ module.exports = {
     baseUrl: process.env.baseUrl || 'https://music-news-cdc05.firebaseio.com',
     fbAPIKey: 'AIzaSyBp4DW1IwR8zwYQQ0lrhMhLrAoZTvzgovY'
   },
+
+  /*
+  ** SSM
+  */
+
+  serverMiddlewareL: [
+    bodyParser.json(),
+    '~/api'
+  ],
+
+  /*
+  ** PreRender (example)
+  */
+
+  // generate: {
+  //   routes: function() {
+  //     if (context.payload) {
+  //       return {
+  //         // ...
+  //       }
+  //     }
+  //     return axios.get('https://music-news-cdc05.firebaseio.com/posts.json')
+  //       .then(res => {
+  //         const routes = [];
+  //         for (const key in res.data) {
+  //           routes.push({
+  //             route: '/posts/' + key,
+  //             payload: {postData: res.data[key]}
+  //           });
+  //         }
+  //         return routes;
+  //       });
+  //   }
+  // },
 
   /*
   ** Build configuration

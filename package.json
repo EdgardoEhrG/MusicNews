@@ -21,9 +21,11 @@
   "devDependencies": {
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.1",
+    "body-parser": "^1.18.3",
     "eslint": "^5.0.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.0.0",
+    "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "nodemon": "^1.11.0",
     "nuxt-sass-resources-loader": "^2.0.5",
