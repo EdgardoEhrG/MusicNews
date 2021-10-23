@@ -4,24 +4,22 @@
 </template>
 
 <script>
-// Components
-import ThePostList from "../../components/ThePostList"
+import ThePostList from "../../components/ThePostList";
 
 export default {
   head: {
-    title: 'Posts'
+    title: "Posts",
   },
   components: {
-    ThePostList
+    ThePostList,
   },
-  created () {
-    this.$store.dispatch('NUXT_SERVER_INIT')
-  }
-}
+  created() {
+    this.$store.dispatch("NUXT_SERVER_INIT");
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../../assets/styles/_mixins.scss";
 
 .container {
@@ -29,9 +27,6 @@ export default {
 
   padding: 10px;
 
-  @include Flexer (flex, column, flex-start, center);
+  @include Flexer(flex, column, flex-start, center);
 }
-
 </style>
-
-

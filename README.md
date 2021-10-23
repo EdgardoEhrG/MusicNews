@@ -1,8 +1,6 @@
 # MusicNews
 
-Music News Application
-
-> Nuxt (Vue SSR)
+> Nuxt
 
 > Vuex
 
@@ -10,11 +8,16 @@ Music News Application
 
 > Sass (SCSS)
 
+> Node.js
+
+> Express
+
 > Firebase
 
-## ToDo
+## Useful elements
 
-* Fixin' Middleware
-* Fixin' Router
-* Update Vuex + modules
-* Fixin' styles
+- [ ] Sass mixins
+- [ ] Dates
+- [ ] Auth
+- [ ] Auth middleware
+- [ ] API Module

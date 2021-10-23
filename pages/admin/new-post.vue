@@ -5,36 +5,28 @@
 </template>
 
 <script>
-// Libraries
-import axios from 'axios'
-
-// Components
-import TheNewPostForm from "../../components/TheNewPostForm"
+import TheNewPostForm from "../../components/TheNewPostForm";
 
 export default {
-  layout: 'admin',
+  layout: "admin",
   head: {
-    title: 'New Post'
+    title: "New Post",
   },
-  middleware: ['check-auth', 'auth'],
+  middleware: ["check-auth", "auth"],
   components: {
-    TheNewPostForm
+    TheNewPostForm,
   },
   methods: {
-    onSubmitted (postData) {
-      this.$store.dispatch('ADD_POST', postData)
-      this.$router.push('/admin')
-    }
-  }
-}
+    onSubmitted(postData) {
+      this.$store.dispatch("ADD_POST", postData);
+      this.$router.push("/admin");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 .admin-post-page {
   padding-top: 20px;
 }
-
 </style>
-
-

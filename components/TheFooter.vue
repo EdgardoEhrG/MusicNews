@@ -5,25 +5,22 @@
 
 <script>
 export default {
-  name: 'TheFooter'
-}
+  name: "TheFooter",
+};
 </script>
 
 <style lang="scss" scoped>
-
 .footer {
-    padding: 20px;
+  padding: 20px;
 
-    background: #232526;
-    background: linear-gradient(to right, #414345, #232526);
+  background: #232526;
+  background: linear-gradient(to right, #414345, #232526);
 
-    p {
-        font-family: 'Work Sans', sans-serif;
+  p {
+    font-family: "Work Sans", sans-serif;
 
-        color: white;
-        text-align: center;
-    }
+    color: white;
+    text-align: center;
+  }
 }
-
 </style>
-

@@ -6,13 +6,12 @@
 <script>
 export default {
   head: {
-    title: 'About'
-  }
-}
+    title: "About",
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../assets/styles/_mixins.scss";
 
 .container {
@@ -24,7 +23,4 @@ export default {
     text-align: center;
   }
 }
-
 </style>
-
-

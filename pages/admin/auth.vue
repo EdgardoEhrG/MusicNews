@@ -10,28 +10,32 @@
 
 <script>
 export default {
-  name: 'AdminAuthPage',
-  layout: 'admin',
-  data () {
+  name: "AdminAuthPage",
+  layout: "admin",
+  data() {
     return {
       isLogin: true,
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+    };
   },
   methods: {
-    onSubmit () {
-      this.$store.dispatch('AUTHENTICATE_USER', { isLogin: this.isLogin, email: this.email, password: this.password })
-        .then(() => {
-          this.$router.push('/admin')
+    onSubmit() {
+      this.$store
+        .dispatch("AUTHENTICATE_USER", {
+          isLogin: this.isLogin,
+          email: this.email,
+          password: this.password,
         })
-    }
-  }
-}
+        .then(() => {
+          this.$router.push("/admin");
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 .auth-container {
   width: 100%;
 
@@ -66,7 +70,4 @@ export default {
     }
   }
 }
-
 </style>
-
-

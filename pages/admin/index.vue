@@ -9,32 +9,30 @@
 </template>
 
 <script>
-// Components
-import ThePostList from "../../components/ThePostList"
+import ThePostList from "../../components/ThePostList";
 
 export default {
-  layout: 'admin',
+  layout: "admin",
   head: {
-    title: 'Admin Page'
+    title: "Admin Page",
   },
-  middleware: ['check-auth', 'auth'],
+  middleware: ["check-auth", "auth"],
   components: {
-    ThePostList
+    ThePostList,
   },
-  created () {
-    this.$store.dispatch('NUXT_SERVER_INIT')
+  created() {
+    this.$store.dispatch("NUXT_SERVER_INIT");
   },
   methods: {
-    onLogout () {
-      this.$store.dispatch('LOGOUT')
-      this.$router.push('/')
-    }
-  }
-}
+    onLogout() {
+      this.$store.dispatch("LOGOUT");
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../../assets/styles/_mixins.scss";
 
 .admin-page {
@@ -55,14 +53,14 @@ export default {
       border: none;
       border-radius: 8px;
 
-      background: #ADA996;
+      background: #ada996;
 
       cursor: pointer;
 
       &:hover {
         color: antiquewhite;
 
-        transition: .4s;
+        transition: 0.4s;
       }
     }
 
@@ -75,15 +73,10 @@ export default {
     h1 {
       margin-top: 10px;
 
-      font-family: 'Work Sans', sans-serif;
+      font-family: "Work Sans", sans-serif;
 
       text-align: center;
     }
   }
 }
-
 </style>
-
-
-
-

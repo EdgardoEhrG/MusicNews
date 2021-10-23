@@ -5,20 +5,19 @@
 
 <script>
 // Components
-import ThePostList from "../components/ThePostList"
+import ThePostList from "../components/ThePostList";
 
 export default {
   head: {
-    title: 'Home'
+    title: "Home",
   },
   components: {
-    ThePostList
+    ThePostList,
   },
-  created () {
-    this.$store.dispatch('NUXT_SERVER_INIT')
-  }
-}
+  created() {
+    this.$store.dispatch("NUXT_SERVER_INIT");
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

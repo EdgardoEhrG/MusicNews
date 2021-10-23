@@ -11,55 +11,53 @@
 </template>
 
 <script>
-// Components
-import TheMobileMenu from "./TheMobileMenu"
+import TheMobileMenu from "./TheMobileMenu";
 
 export default {
-  name: 'TheHeader',
+  name: "TheHeader",
   components: {
-    TheMobileMenu
-  }
-}
+    TheMobileMenu,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../assets/styles/_mixins.scss";
 
 .header {
-    @include Flexer(flex, row, flex-start, center);
+  @include Flexer(flex, row, flex-start, center);
 
-    padding: 20px;
+  padding: 20px;
 
-    color: white;
+  color: white;
 
-    background: #232526;
-    background: linear-gradient(to right, #414345, #232526);
+  background: #232526;
+  background: linear-gradient(to right, #414345, #232526);
 
-    .h-container {
-      width: 100%;
+  .h-container {
+    width: 100%;
 
-      @include Flexer(flex, row, space-between, center);
+    @include Flexer(flex, row, space-between, center);
 
-      h1 {
-        font-family: 'Work Sans', sans-serif;
+    h1 {
+      font-family: "Work Sans", sans-serif;
 
-        text-align: center;
-      }
+      text-align: center;
+    }
 
-      nav {
-        a {
-          margin: 5px;
+    nav {
+      a {
+        margin: 5px;
 
-          color: white;
+        color: white;
 
-          &:hover {
-            color: grey;
-          }
+        &:hover {
+          color: grey;
+        }
 
-          &:active {
-            color: red;
-          }
+        &:active {
+          color: red;
+        }
       }
 
       .nuxt-link-active {
@@ -68,7 +66,7 @@ export default {
     }
 
     .links {
-      font-family: 'Work Sans', sans-serif;
+      font-family: "Work Sans", sans-serif;
 
       @media screen and (max-width: 1300px) {
         display: none;
@@ -76,7 +74,4 @@ export default {
     }
   }
 }
-
 </style>
-
-

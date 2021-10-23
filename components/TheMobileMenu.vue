@@ -9,17 +9,16 @@
 
 <script>
 export default {
-  name: 'TheMobileMenu',
+  name: "TheMobileMenu",
   computed: {
-    isShow () {
-      return this.$store.getters.statusMenu
-    }
-  }
-}
+    isShow() {
+      return this.$store.getters.statusMenu;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../assets/styles/_mixins.scss";
 
 .mobile-menu {
@@ -48,7 +47,7 @@ export default {
       &:hover {
         color: antiquewhite;
 
-        transition: .5s;
+        transition: 0.5s;
       }
     }
   }
@@ -59,7 +58,4 @@ export default {
 
   display: flex;
 }
-
 </style>
-
-

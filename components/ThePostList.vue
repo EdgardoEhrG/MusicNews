@@ -12,36 +12,31 @@
 </template>
 
 <script>
-// Components
-import BasePostPreview from "./BasePostPreview"
+import BasePostPreview from "./BasePostPreview";
 
 export default {
-  name: 'ThePostList',
+  name: "ThePostList",
   components: {
-      BasePostPreview
+    BasePostPreview,
   },
   props: {
-    isAdmin: {type: Boolean, default: false}
+    isAdmin: { type: Boolean, default: false },
   },
   computed: {
-    prPosts () {
-      return this.$store.getters.prPosts
-    }
-  }
-}
+    prPosts() {
+      return this.$store.getters.prPosts;
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../assets/styles/_mixins.scss";
 
 .post-list {
-    width: 100%;
+  width: 100%;
 
-    @include Flexer(flex, row, center, center);
-    flex-wrap: wrap;
+  @include Flexer(flex, row, center, center);
+  flex-wrap: wrap;
 }
-
 </style>
-
-

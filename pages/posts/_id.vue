@@ -11,24 +11,23 @@
 </template>
 
 <script>
-// Libraries
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  asyncData (context) {
-    return axios.get(process.env.baseUrl + '/posts/' + context.params.id + '.json')
-      .then(res => {
+  asyncData(context) {
+    return axios
+      .get(process.env.baseUrl + "/posts/" + context.params.id + ".json")
+      .then((res) => {
         return {
-          loadedPost: res.data
-        }
+          loadedPost: res.data,
+        };
       })
-      .catch(err => context.error(err))
-  }
-}
+      .catch((err) => context.error(err));
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../../assets/styles/_mixins.scss";
 
 .container {
@@ -43,11 +42,9 @@ export default {
     }
   }
 
-  .main, .footer {
+  .main,
+  .footer {
     text-align: center;
   }
 }
-
 </style>
-
-

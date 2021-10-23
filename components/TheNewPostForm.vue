@@ -12,84 +12,93 @@
 
 <script>
 export default {
-  name: 'TheNewPostForm',
+  name: "TheNewPostForm",
   props: {
-    post: {type: Object, required: false, default: function () { return { author: '', title: '', imageName: '', content: '', previewText: '' } }}
+    post: {
+      type: Object,
+      required: false,
+      default: function () {
+        return {
+          author: "",
+          title: "",
+          imageName: "",
+          content: "",
+          previewText: "",
+        };
+      },
+    },
   },
-  data () {
+  data() {
     return {
-      editedPost: { ...this.post }
-    }
+      editedPost: { ...this.post },
+    };
   },
   methods: {
-    onSave () {
-      this.$emit('submit', this.editedPost)
-      this.$router.push('/admin')
+    onSave() {
+      this.$emit("submit", this.editedPost);
+      this.$router.push("/admin");
       // console.log(this.editedPost)
     },
-    onCancel () {
-      this.$router.push('/admin')
-    }
-  }
-}
+    onCancel() {
+      this.$router.push("/admin");
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 @import "../assets/styles/_mixins.scss";
 
 .form {
+  @include Flexer(flex, column, center, center);
+
+  label {
     @include Flexer(flex, column, center, center);
 
-    label {
-        @include Flexer(flex, column, center, center);
+    input,
+    textarea {
+      width: 400px;
 
-        input, textarea {
-            width: 400px;
+      margin: 10px;
+      padding: 20px;
 
-            margin: 10px;
-            padding: 20px;
+      font-size: 13px;
 
-            font-size: 13px;
+      outline: none;
+      border: none;
 
-            outline: none;
-            border: none;
+      &::placeholder {
+        font-size: 13px;
 
-            &::placeholder {
-                font-size: 13px;
-
-                color: darkgrey;
-            }
-        }
-    }
-
-    .buttons {
-      width: 200px;
-
-      @include Flexer(flex, row, space-between, center);
-
-      margin-top: 10px;
-
-      button {
-        padding: 10px;
-
-        font-size: 12px;
-        color: white;
-
-        border: none;
-        outline: none;
-      }
-
-      .save {
-        background-color: red;
-      }
-
-      .cancel {
-        background-color: black;
+        color: darkgrey;
       }
     }
+  }
+
+  .buttons {
+    width: 200px;
+
+    @include Flexer(flex, row, space-between, center);
+
+    margin-top: 10px;
+
+    button {
+      padding: 10px;
+
+      font-size: 12px;
+      color: white;
+
+      border: none;
+      outline: none;
+    }
+
+    .save {
+      background-color: red;
+    }
+
+    .cancel {
+      background-color: black;
+    }
+  }
 }
-
 </style>
-
-
