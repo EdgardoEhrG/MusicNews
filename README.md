@@ -19,5 +19,4 @@
 - [ ] Sass mixins
 - [ ] Dates
 - [ ] Auth
-- [ ] Auth middleware
-- [ ] API Module
+- [ ] API module
